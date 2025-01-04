@@ -17,7 +17,7 @@ impl Mine {
     fn click_on_bomb();
 
     #[signal]
-    fn open_empty_cells(path: Variant);
+    fn open_cells(path: Variant);
 
     #[func]
     fn on_click_cell(&mut self) {
@@ -26,13 +26,11 @@ impl Mine {
             if self.base().get_text() != "·".into() {
                 return;
             }
-            godot_print!("left click");
             self.left_click();
         } else if input.is_action_pressed("right_click") {
             if self.base().get_text() != "·".into() && self.base().get_text() != "🚩".into() {
                 return;
             }
-            godot_print!("right click");
             self.right_click();
         }
     }
@@ -44,11 +42,9 @@ impl Mine {
         if self.is_mine {
             cell.set_text("💣");
             self.base_mut().emit_signal("click_on_bomb", &[]);
-        } else if self.mine_amount == 0 {
-            let index = self.base().get_index();
-            self.base_mut().emit_signal("open_empty_cells", &[index.to_variant()]);
         } else {
-            cell.set_text(&self.mine_amount.to_string());
+            let index = self.base().get_index();
+            self.base_mut().emit_signal("open_cells", &[index.to_variant()]);
         }
     }
 
