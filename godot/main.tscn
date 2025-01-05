@@ -1,19 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://djg0bgd0myuv3"]
 
-[ext_resource type="PackedScene" uid="uid://dd5fw6kb2ogux" path="res://mine_grid.tscn" id="1_4uxc0"]
+[ext_resource type="PackedScene" uid="uid://dd5fw6kb2ogux" path="res://cell_grid.tscn" id="1_4uxc0"]
 [ext_resource type="PackedScene" uid="uid://dey7bqyvlv1m" path="res://hud.tscn" id="1_d4s12"]
 
 [node name="Main" type="Main"]
 
 [node name="Hud" parent="." instance=ExtResource("1_d4s12")]
 
-[node name="MineGrid" parent="." instance=ExtResource("1_4uxc0")]
+[node name="CellGrid" parent="." instance=ExtResource("1_4uxc0")]
+physics_interpolation_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -34,6 +33,7 @@ vertical_alignment = 1
 [node name="GameTimer" type="Timer" parent="."]
 
 [connection signal="on_start_game_button_press" from="Hud" to="." method="on_start_game"]
-[connection signal="lose_game" from="MineGrid" to="." method="on_lose_game"]
-[connection signal="win_game" from="MineGrid" to="." method="on_win_game"]
+[connection signal="change_flags" from="CellGrid" to="." method="on_change_flags"]
+[connection signal="lose_game" from="CellGrid" to="." method="on_lose_game"]
+[connection signal="win_game" from="CellGrid" to="." method="on_win_game"]
 [connection signal="timeout" from="GameTimer" to="." method="on_game_timer_timeout"]

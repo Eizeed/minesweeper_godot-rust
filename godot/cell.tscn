@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qo5n8bepa2ma"]
 
-[node name="Mine" type="Mine"]
+[node name="Mine" type="Cell"]
 custom_minimum_size = Vector2(30, 30)
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,4 +16,4 @@ grow_vertical = 2
 button_mask = 3
 text = "·"
 
-[connection signal="button_down" from="." to="." method="on_click_cell"]
+[connection signal="button_down" from="." to="." method="on_cell_click"]

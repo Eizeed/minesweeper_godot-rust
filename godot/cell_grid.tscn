@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dd5fw6kb2ogux"]
 
-[node name="MineGrid" type="MineGrid"]
+[node name="MineGrid" type="CellGrid"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

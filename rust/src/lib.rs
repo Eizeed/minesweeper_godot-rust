@@ -1,7 +1,7 @@
 use godot::prelude::*;
 
 mod grid;
-mod mine;
+mod cell;
 mod hud;
 mod main_scene;
 
