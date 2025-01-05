@@ -20,9 +20,7 @@ Hope it will help you as well😊
 ## How to play?
 <p>
 You need to build dynamic library of code I provided with:
-`
-cargo build
-`
+`cargo build`
 <br>
 And after this you can preview or export the game with godot
 
