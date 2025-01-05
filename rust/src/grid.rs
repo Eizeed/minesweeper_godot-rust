@@ -14,8 +14,7 @@ pub struct CellGrid {
     mines_amount: u32,
     cells_opened: u32,
 
-    // This field is same as child nodes of CellGrid
-    // So the are Cells from godot perspective.
+    // This field is same as child nodes of CellGrid.
     // Elements in this vector can be changed.
     // All changes will be applied to child node
     // they are representing in godot
@@ -30,7 +29,7 @@ pub struct CellGrid {
     base: Base<GridContainer>
 }
 
-// Directions is used as usize you have to add + 1
+// Directions are used as usize you have to add +1
 // for it to work. It's a little bit confusing,
 // but for me it's better than having overhead
 // converting usize to i32 and vise versa
@@ -55,7 +54,7 @@ impl CellGrid {
         let children = self.base().get_children();
         for child in children.iter_shared() {
             // As far as i know this can't fail
-            // because all childs of CellGrid are Cells
+            // because all children of CellGrid are Cells
             // and Cell base is Button
             let _ = child.try_cast::<Button>().map(|mut b| {
                 b.set_disabled(true);
@@ -129,11 +128,6 @@ impl CellGrid {
             // For every mine we increase mines_around field
             // of cells around in square shape by 1
             for (dx, dy) in DIRECTIONS.iter() {
-
-                // This is mine so just skip
-                if *dx == 1 && *dy == 1 {
-                    continue;
-                }
                 
                 // Checking if it is valid matrix indexes
                 // if not, skip it
@@ -173,7 +167,8 @@ impl CellGrid {
 
         // Finally we have our Grid set up with
         // mines and cells with number of mines
-        // around it. So we can render a grid
+        // around it.
+        // Here we render a grid
         for rows in matrix {
             let mut struct_row = vec![];
             for mut cell in rows {
@@ -300,7 +295,8 @@ impl CellGrid {
     #[func]
     pub fn clear_board(&mut self) {
         let cells = self.base_mut().get_children();
-        // Free all previous cells they will
+
+        // Free all previous cells. They will
         // be deleted on the next frame
         for mut cell in cells.iter_shared() {
             cell.queue_free();
@@ -346,7 +342,7 @@ impl IGridContainer for CellGrid {
 
     fn ready(&mut self) {
         // need to load cell_scene from godot
-        // in order to bind them with our template
+        // in order to bind scene with our template
         self.cell_scene = load("res://cell.tscn");
     }
 }

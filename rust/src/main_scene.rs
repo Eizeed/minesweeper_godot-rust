@@ -45,9 +45,9 @@ impl Main {
     fn on_start_game(&mut self) {
         // Reseting time
         self.time = 0;
-        let mut hud = self.base_mut().get_node_as::<hud::Hud>("Hud");
 
         // Hiding message and reseting time in hud
+        let mut hud = self.base_mut().get_node_as::<hud::Hud>("Hud");
         let mut hud = hud.bind_mut();
         hud.hide_message();
         hud.update_time(self.time);
@@ -69,7 +69,9 @@ impl Main {
     // Triggered on every change_flags
     // signal trigger
     fn on_change_flags(&mut self) {
-        // Getting flags for CellGrid child node
+
+        // Getting flags from CellGrid, which is 
+        // main_scene child node
         let grid = self.base_mut().get_node_as::<CellGrid>("CellGrid");
         let flags = grid.bind().flags;
         

@@ -34,8 +34,7 @@ impl Cell {
     fn sub_flag();
 
     #[func]
-    // "Router" to handler click with for
-    // right and left mouse buttons
+    // "Router" to handle right and left mouse buttons
     fn on_cell_click(&mut self) {
         let input = Input::singleton();
 
@@ -68,8 +67,8 @@ impl Cell {
             let index = self.base().get_index();
 
             // We can pass arguments with signals but it needs
-            // to be variant. Idk how to pass arrays, because
-            // i didn't need them here
+            // to be variant. Idk how to pass arrays or multiple elements,
+            // because i didn't need them here
             self.base_mut().emit_signal("open_cells", &[index.to_variant()]);
         }
     }
@@ -77,7 +76,7 @@ impl Cell {
     fn right_click(&mut self) { 
         // Reversing state of flagged
         // and calling signals to change
-        // flag field in Grid
+        // flag field in CellGrid
         if self.is_flagged {
             self.is_flagged = !self.is_flagged;
             self.base_mut().set_text("·");
