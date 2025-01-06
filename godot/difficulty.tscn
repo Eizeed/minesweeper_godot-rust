@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ch8f2pyl3th1b"]
+
+[node name="OptionButton" type="OptionButton"]
+offset_right = 32.0
+offset_bottom = 20.0
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2

@@ -17,6 +17,23 @@ Project itself wasn't really hard, but I learned a lot coding it.<br>
 Hope it will help you as well😊
 </p>
 
+## Features
+### Flags system
+<p>
+Based mechanic of minesweeper. Implemented like in most games of this type
+</p>
+
+### Scaling formula for grid generation
+<p>
+Grid size and mines amount are scaled with difficulty level where 0 - easy, 1 - medium, 2 - hard.<br>
+For now it doesn't matter i'd say, but if you want to add more levels, it would be handy
+</p>
+
+### Score system
+<p>
+Exponential-based formula to earn score based on time spent.
+</p>
+
 ## How to play?
 <p>
 You need to build dynamic library of code I provided with:
@@ -27,5 +44,4 @@ And after this you can preview or export the game with godot
 </p>
 
 ## Todo
-- Create difficulties to select in game
-- Add score
+- fix UI (probably will never happen cuz i suck in UI)

@@ -34,6 +34,7 @@ vertical_alignment = 1
 
 [connection signal="on_start_game_button_press" from="Hud" to="." method="on_start_game"]
 [connection signal="change_flags" from="CellGrid" to="." method="on_change_flags"]
+[connection signal="change_score" from="CellGrid" to="." method="on_change_score"]
 [connection signal="lose_game" from="CellGrid" to="." method="on_lose_game"]
 [connection signal="win_game" from="CellGrid" to="." method="on_win_game"]
 [connection signal="timeout" from="GameTimer" to="." method="on_game_timer_timeout"]

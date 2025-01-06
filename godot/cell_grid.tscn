@@ -12,3 +12,5 @@ offset_right = 400.0
 offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
