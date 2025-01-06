@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use godot::{classes::{ Button, GridContainer, IGridContainer}, global::pow, obj::{NewGd, WithBaseField}, prelude::*};
+use godot::{classes::{ Button, GridContainer, IGridContainer}, obj::{NewGd, WithBaseField}, prelude::*};
 use rand::Rng;
 
 use crate::cell::Cell;
