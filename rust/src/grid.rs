@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use godot::{classes::{ Button, GridContainer, IGridContainer}, obj::{NewGd, WithBaseField}, prelude::*};
+use godot::{classes::{ Button, GridContainer, IGridContainer}, global::pow, obj::{NewGd, WithBaseField}, prelude::*};
 use rand::Rng;
 
 use crate::cell::Cell;
@@ -49,6 +49,9 @@ impl CellGrid {
     #[signal]
     fn change_flags();
 
+    #[signal]
+    fn change_score();
+
     #[func]
     fn disable_buttons(&mut self) {
         let children = self.base().get_children();
@@ -63,8 +66,26 @@ impl CellGrid {
     }
 
     #[func]
-    pub fn init_grid(&mut self) {
+    // difficulties: 0 - easy, 1 - medium, 2 - hard;
+    pub fn init_grid(&mut self, difficulty: f64) {
+        // Grid uses difficulty multiplier to create its values
+        // like grid_size and mines_amount
+        // simplified formulas:
+        // grid_size has base value of 10.
+        // grid_size = grid_size + (5 * difficulty)
+        self.grid_size = self.grid_size + (5.0 * difficulty) as i32;
+        // mines_amount has base valie of 10.
+        // mines_amount = (grid_size * grid_size) * (0.1 + 0.05 * difficulty)
+        // it adds 5% of mines on each difficuty
+        self.mines_amount = ((self.grid_size * self.grid_size) as f64 * (0.1 + (0.05 * difficulty))) as u32;
+    
+        self.gen_grid();
+    }
+
+    #[func]
+    pub fn gen_grid(&mut self) {
         let grid_size = self.grid_size;
+
         // CellGrid is based on GridContainer godot class
         self.base_mut().set_columns(grid_size);
 
@@ -229,6 +250,7 @@ impl CellGrid {
             } else {
                 let amount = self.cells[x][y].bind().mines_around;
                 self.cells[x][y].set_text(&amount.to_string());
+                self.base_mut().emit_signal("change_score", &[]);
             }
             
             // Need to keep track of opened cells
@@ -303,6 +325,8 @@ impl CellGrid {
         }
 
         // Reseting fields of CellGrid structure
+        self.grid_size = 10;
+        self.mines_amount = 10;
         self.cells_opened = 0;
         self.cells = vec![];
         self.opened = vec![];
